@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/carloshachi777/AML-Course-Template/blob/main/notebooks/final_project.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KenethRojas/AML-Final-Rojas-Keneth/blob/main/notebooks/AML_Final_Project_Rojas_Keneth.ipynb)
 
 ### Notebook del Proyecto Final
 
