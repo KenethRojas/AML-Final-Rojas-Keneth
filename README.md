@@ -118,4 +118,5 @@ Capstone Project – Advanced Machine Learning
 ## 📄 Licencia
 
 Uso académico / educativo.
+Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
