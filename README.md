@@ -1,49 +1,57 @@
-# Plantilla del Curso: Advanced Machine Learning
+# Modelo de Propensión para la Adquisición de un Seguro Vehicular (Advanced ML)
 
-Este repositorio es una **plantilla** para el proyecto final del curso de *Advanced Machine Learning*.
-Cada estudiante debe crear su propio repositorio a partir de esta plantilla y trabajar únicamente en el notebook principal desde Google Colab.
-
----
-
-## Pasos para usar esta plantilla (OBLIGATORIO)
-
-### 1. Crear tu repositorio personal
-
-1. Ir a este repositorio plantilla
-2. Hacer clic en el botón verde **“Use this template”**
-3. Crear un nuevo repositorio con el nombre:
-
-   `AML-Final-Apellido-Nombre`
-
-Ejemplo: `AML-Final-Marino-Duncan`
+Proyecto de **clasificación binaria** para predecir la probabilidad de que un cliente adquiera un **seguro vehicular**, usando un dataset tabular anonimizado (30,000 registros, 10 variables predictoras + ID + target). El objetivo es mejorar la eficiencia de campañas comerciales priorizando a los clientes con mayor propensión.
 
 ---
 
-### 2. Trabajar SOLO en el notebook desde Colab
+## 🧠 Contexto y objetivo de negocio
 
-1. En tu repositorio, entrar a la carpeta `notebooks/`
-2. Abrir el archivo: `final_project.ipynb`
-3. Hacer clic en **“Open in Colab”**
-4. Desarrollar todo tu proyecto dentro de este notebook
-
-No es necesario usar comandos de git ni terminal.
+En seguros, contactar clientes de forma masiva incrementa costos y reduce ROI. Este proyecto construye un modelo que **estima propensión de compra** para:
+- priorizar leads (ej. top deciles),
+- reducir costo por contacto,
+- mejorar conversión enfocando esfuerzos en perfiles con mayor intención.
 
 ---
 
-### 3. Guardar cambios directamente en GitHub
+## 📦 Dataset
 
-Dentro de Colab:
+- **Tamaño:** 30,000 filas × 12 columnas  
+- **Target:** `Flag_Vehicular` (0 = no compra, 1 = compra)  
+- **Desbalance:** ~94% clase 0 vs ~6% clase 1 (ratio ~15.7:1)  
+- **Variables:** `Variable1` a `Variable10` (anonimizadas), `cliente` como identificador técnico.
 
-* Ir a **File → Save a copy in GitHub**
-* Seleccionar tu repositorio personal
-* Confirmar sobrescribir el notebook
-
-De esta forma, tu trabajo quedará guardado automáticamente en GitHub.
+> Nota: El dataset fue provisto internamente por la empresa aseguradora como parte del caso de estudio. Por motivos de confidencialidad, la información se entrega anonimizada: no contiene datos personales identificables (por ejemplo, nombres, documentos, teléfonos, direcciones) y las variables han sido enmascaradas con nombres genéricos (Variable1 a Variable10). Asimismo, el identificador cliente funciona únicamente como un ID técnico para trazabilidad y validaciones, sin permitir la identificación real de un individuo. Esta anonimización asegura el cumplimiento de buenas prácticas de privacidad y permite realizar el modelamiento sin exponer información sensible del negocio.
 
 ---
 
-## Estructura del repositorio (NO modificar)
+## 🧰 Metodología (resumen)
 
+1. **EDA**: distribución del target, correlaciones, análisis de outliers.
+2. **Preprocesamiento**:
+   - no hubo missing values,
+   - tratamiento de outliers con winsorización (1%–99%) en variables continuas,
+   - escalado con `RobustScaler`,
+   - split estratificado train/val/test (70/15/15).
+3. **Modelos**:
+   - **Deep Learning (PyTorch)**: MLP densa (64 → 32 → 16) con BatchNorm + ReLU + Dropout.
+   - **Baselines (sklearn)**: Logistic Regression y Random Forest.
+4. **Evaluación**:
+   - métricas de clasificación (Accuracy / Precision / Recall / F1 + matriz de confusión),
+   - comparación contra baselines.
+
+---
+
+## ✅ Resultados (alto nivel)
+
+- El dataset está **altamente desbalanceado**, por lo que **Accuracy puede ser engañosa**.
+- En la comparación de modelos, los baselines (especialmente Random Forest) obtuvieron mejor desempeño global que la red neuronal en la corrida final.
+- La matriz de confusión muestra que el reto principal está en **capturar adecuadamente la clase minoritaria (compradores)** sin disparar falsos positivos.
+
+> Recomendación: para una evaluación más justa en desbalance, priorizar **Recall/F1 de la clase 1**, además de **PR-AUC/ROC-AUC** y ajuste de umbral.
+
+---
+
+## 📁 Estructura del repositorio
 * `notebooks/` → Notebook principal del proyecto
 * `src/` → Código auxiliar (opcional)
 * `data/` → Solo instrucciones del dataset (no subir datos grandes)
@@ -51,35 +59,63 @@ De esta forma, tu trabajo quedará guardado automáticamente en GitHub.
 * `figures/` → Gráficos generados
 * `report/` → Reporte final (PDF o Markdown)
 
-Los estudiantes deben principalmente trabajar en:
-`notebooks/final_project.ipynb`
+---
+
+## 🚀 Cómo ejecutar
+
+### Opción A: Google Colab (recomendado)
+1. Sube el notebook a Colab.
+2. Monta tu Google Drive.
+3. Coloca el dataset en la ruta esperada
+4. Ejecuta todas las celdas en orden.
+
+### Opción B: Local (Jupyter)
+1. Crea un entorno virtual.
+2. Instala dependencias.
+3. Ejecuta el notebook.
 
 ---
 
-## Reglas importantes
+## 🔧 Dependencias
 
-* No subir datasets grandes o datos sensibles
-* El notebook debe poder ejecutarse en Colab
-* Incluir visualizaciones y evaluación del modelo
-* Mantener el código organizado y reproducible
-
----
-
-## Entrega final
-
-Cada estudiante deberá enviar:
-
-1. El enlace de su repositorio en GitHub
-2. El notebook final completamente ejecutable
-3. (Opcional) un tag final: `v1.0-final`
+Principales librerías usadas:
+- `pandas`, `numpy`
+- `matplotlib`, `seaborn`
+- `scikit-learn`
+- `torch` (PyTorch)
+- (opcional) `shap`
 
 ---
 
-## Objetivo pedagógico
+## 📌 Próximas mejoras
 
-Esta estructura busca que los estudiantes:
+- Manejo explícito del desbalance:
+- `class_weight` / `pos_weight`,
+- oversampling (SMOTE) o undersampling con cuidado de leakage.
+- Ajuste de **umbral de decisión** según capacidad comercial.
+- Métricas adicionales: **PR-AUC, ROC-AUC**, curva Precision-Recall, calibración.
+- Interpretabilidad:
+- SHAP con el pipeline correcto (y sample representativo),
+- importancia por permutación en baselines.
 
-* Practiquen reproducibilidad en ML
-* Mantengan organización profesional del código
-* Usen GitHub como portafolio académico
-* Integren experimentación, evaluación y visualización en un único flujo reproducible
+---
+
+## 👤 Autor
+
+**Keneth Anderson Rojas Cadillo**  
+Capstone Project – Advanced Machine Learning
+
+---
+
+## 📚 Referencias (base)
+
+- Scikit-learn documentation (modelos y métricas).
+- PyTorch documentation (arquitectura y entrenamiento).
+- SHAP documentation (interpretabilidad).
+
+---
+
+## 📄 Licencia
+
+Uso académico / educativo.
+
