@@ -9,10 +9,9 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 **Problema:** Una empresa de seguros desea anticipar qué clientes tienen mayor probabilidad de adquirir un seguro vehicular para optimizar sus campañas comerciales y mejorar la conversión.
 
 **Objetivo:** Entrenar un modelo predictivo (clasificación binaria) que estime la **propensión de compra** y permita:
-- priorizar clientes con mayor probabilidad,
-- priorizar leads (ej. top deciles),
-- reducir costo por contacto,
-- mejorar conversión enfocando esfuerzos en perfiles con mayor intención.
+- Priorizar clientes con mayor probabilidad o leads (ej. top deciles).
+- Reducir costo por contacto.
+- Mejorar conversión enfocando esfuerzos en perfiles con mayor intención.
 
 ---
 
@@ -29,18 +28,18 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 
 ## 🧰 Metodología (resumen)
 
-1. **EDA**: distribución del target, correlaciones, análisis de outliers.
+1. **EDA**: Distribución del target, correlaciones, análisis de outliers.
 2. **Preprocesamiento**:
-   - no hubo missing values,
-   - tratamiento de outliers con winsorización (1%–99%) en variables continuas,
-   - escalado con `RobustScaler`,
-   - split estratificado train/val/test (70/15/15).
+   - No hubo missing values.
+   - Tratamiento de outliers con winsorización (1%–99%) en variables continuas.
+   - Escalado con `RobustScaler`.
+   - Split estratificado train/val/test (70/15/15).
 3. **Modelos**:
    - **Deep Learning (PyTorch)**: MLP densa (64 → 32 → 16) con BatchNorm + ReLU + Dropout.
    - **Baselines (sklearn)**: Logistic Regression y Random Forest.
 4. **Evaluación**:
-   - métricas de clasificación (Accuracy / Precision / Recall / F1 + matriz de confusión),
-   - comparación contra baselines.
+   - Métricas de clasificación (Accuracy / Precision / Recall / F1 + matriz de confusión).
+   - Comparación contra baselines.
 
 ---
 
@@ -69,9 +68,9 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 - El proyecto demuestra un pipeline completo de **modelado de propensión** (end-to-end).
 - Para este dataset, **Random Forest** y **Logistic Regression** alcanzan mejor desempeño global que el DL en accuracy.
 - A nivel negocio, el output del modelo permite:
-  - identificar clientes con mayor probabilidad de compra,
-  - priorizar esfuerzos comerciales (contacto, ofertas, seguimiento),
-  - mejorar el ROI de campañas al reducir el gasto en segmentos con baja propensión.
+  - Identificar clientes con mayor probabilidad de compra.
+  - Priorizar esfuerzos comerciales (contacto, ofertas, seguimiento).
+  - Mejorar el ROI de campañas al reducir el gasto en segmentos con baja propensión.
 
 ---
 
@@ -90,7 +89,7 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 ### Opción A: Google Colab (recomendado)
 1. Sube el notebook a Colab.
 2. Monta tu Google Drive.
-3. Coloca el dataset en la ruta esperada
+3. Coloca el dataset en la ruta esperada.
 4. Ejecuta todas las celdas en orden.
 
 ### Opción B: Local (Jupyter)
