@@ -63,7 +63,7 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 
 ---
 
-## 🎯 Conclusiones y Valor para la Toma de Decisiones
+## 🎯 Conclusiones y valor para la toma de decisiones
 
 - El proyecto demuestra un pipeline completo de **modelado de propensión** (end-to-end).
 - Para este dataset, **Random Forest** y **Logistic Regression** alcanzan mejor desempeño global que el DL en accuracy.
