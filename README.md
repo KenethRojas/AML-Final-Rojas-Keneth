@@ -44,11 +44,21 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 
 ---
 
-## ✅ Resultados (alto nivel)
+## ✅ Resultados y métricas principales
 
 - El dataset está **altamente desbalanceado**, por lo que **Accuracy puede ser engañosa**.
 - En la comparación de modelos, los baselines (especialmente Random Forest) obtuvieron mejor desempeño global que la red neuronal en la corrida final.
 - La matriz de confusión muestra que el reto principal está en **capturar adecuadamente la clase minoritaria (compradores)** sin disparar falsos positivos.
+
+### Métrica principal usada (clasificación)
+- **Accuracy** (y reporte de clasificación con Precision/Recall/F1)
+
+### Comparación de modelos (Test)
+| Modelo | Métrica (Accuracy) |
+|-------|---------------------|
+| Random Forest | **0.9416** |
+| Logistic Regression | **0.9402** |
+| Deep Learning (MLP) | **0.7044** |
 
 > Recomendación: para una evaluación más justa en desbalance, priorizar **Recall/F1 de la clase 1**, además de **PR-AUC/ROC-AUC** y ajuste de umbral.
 
