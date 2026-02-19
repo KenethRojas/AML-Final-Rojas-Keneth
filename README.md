@@ -4,9 +4,12 @@ Proyecto de **clasificación binaria** para predecir la probabilidad de que un c
 
 ---
 
-## 🧠 Contexto y objetivo de negocio
+## 🧠 Problema y Objetivo
 
-En seguros, contactar clientes de forma masiva incrementa costos y reduce ROI. Este proyecto construye un modelo que **estima propensión de compra** para:
+**Problema:** Una empresa de seguros desea anticipar qué clientes tienen mayor probabilidad de adquirir un seguro vehicular para optimizar sus campañas comerciales y mejorar la conversión.
+
+**Objetivo:** Entrenar un modelo predictivo (clasificación binaria) que estime la **propensión de compra** y permita:
+- priorizar clientes con mayor probabilidad,
 - priorizar leads (ej. top deciles),
 - reducir costo por contacto,
 - mejorar conversión enfocando esfuerzos en perfiles con mayor intención.
@@ -48,6 +51,17 @@ En seguros, contactar clientes de forma masiva incrementa costos y reduce ROI. E
 - La matriz de confusión muestra que el reto principal está en **capturar adecuadamente la clase minoritaria (compradores)** sin disparar falsos positivos.
 
 > Recomendación: para una evaluación más justa en desbalance, priorizar **Recall/F1 de la clase 1**, además de **PR-AUC/ROC-AUC** y ajuste de umbral.
+
+---
+
+## 🎯 Conclusiones y Valor para la Toma de Decisiones
+
+- El proyecto demuestra un pipeline completo de **modelado de propensión** (end-to-end).
+- Para este dataset, **Random Forest** y **Logistic Regression** alcanzan mejor desempeño global que el DL en accuracy.
+- A nivel negocio, el output del modelo permite:
+  - identificar clientes con mayor probabilidad de compra,
+  - priorizar esfuerzos comerciales (contacto, ofertas, seguimiento),
+  - mejorar el ROI de campañas al reducir el gasto en segmentos con baja propensión.
 
 ---
 
